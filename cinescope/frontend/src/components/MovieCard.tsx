@@ -12,7 +12,7 @@ export function MovieCard({ movie }: Props) {
     style: 'currency',
     currency: 'USD',
     maximumFractionDigits: 1
-  }).format(movie.recettes_totales)
+  }).format(movie.recettes_totales ?? 0)
 
   const date = new Date(movie.date_sortie).toLocaleDateString('fr-FR', {
     year: 'numeric',
