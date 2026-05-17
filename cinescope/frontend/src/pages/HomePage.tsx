@@ -6,6 +6,8 @@ import { MovieCard } from '../components/MovieCard'
 import { Navbar } from '../components/NavBar'
 import { GenreStats } from '../components/GenreStats'
 import { Pagination } from '../components/Pagination'
+import { useNavigate } from 'react-router-dom'
+import { FaUserCog } from "react-icons/fa";
 
 export function HomePage() {
   const {
@@ -18,6 +20,7 @@ export function HomePage() {
   } = useMovies()
 
   const { paginated, page, setPage, totalPages } = usePagination(filteredMovies)
+  const navigate = useNavigate()
 
   if (loading) return <div className="loading"><div className="spinner" />Chargement...</div>
   if (error) return <div className="error">{error}</div>
@@ -75,6 +78,7 @@ export function HomePage() {
               de tri, et des pages de détail enrichies avec un algorithme de recommandation.
             </p>
             <span className="about-tag"> Test technique (Alternance)</span>
+            <div><br /><button className="detail-back-btn" onClick={() => navigate('/admin')}><FaUserCog />Admin</button></div>
           </div>
         </div>
       </section>

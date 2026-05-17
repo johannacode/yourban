@@ -142,7 +142,7 @@ Cette interface permet de gérer les films directement depuis l’application :
 
 ---
 
-### 🔄 Fonctionnement
+### Fonctionnement
 
 Toutes les actions (création, modification, suppression) passent par l’API Express et sont persistées dans le fichier :
 
@@ -156,9 +156,11 @@ movies.json
 
 Cette interface **n’est pas protégée par authentification**.
 
-Elle est volontairement laissée ouverte afin de :
+Elle est volontairement laissée ouverte durant le test afin de :
 - démontrer le fonctionnement du CRUD
 - servir de preuve technique dans le cadre du test
+
+Le projet étant conçu comme une démonstration front-end légère, aucune base de données ni gestion des utilisateurs n’ont été implémentées pour le moment.
 ---
 
 ## Moteur de recommandation

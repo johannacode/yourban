@@ -123,10 +123,10 @@ export function AdminPage() {
 
       <div className="admin-page">
         <div className="admin-header">
-          <button className="detail-back-btn" onClick={() => navigate('/')}>← Retour</button>
           <h1>Administration</h1>
         </div>
-
+        <div><button className="detail-back-btn" onClick={() => navigate('/')}>← Retour</button></div>
+    
         {message && (
           <div className={`admin-message ${message.ok ? 'admin-message--ok' : 'admin-message--err'}`}>
             {message.text}
@@ -149,7 +149,7 @@ export function AdminPage() {
               />
             </div>
 
-            {/* Genre — select + champ libre si "Autre" */}
+            {/* Genre (select + champ libre si "Autre") */}
             <div className="admin-field">
               <label>Genre</label>
               <select
@@ -171,7 +171,7 @@ export function AdminPage() {
               )}
             </div>
 
-            {/* Date — input type date = calendrier natif */}
+            {/* Date */}
             <div className="admin-field">
               <label>Date de sortie *</label>
               <input
@@ -239,7 +239,7 @@ export function AdminPage() {
               />
             </div>
 
-            {/* Note presse — bloquée entre 0 et 10 */}
+            {/* Note presse (bloquée entre 0 et 10) */}
             <div className="admin-field">
               <label>Note presse (0 – 10)</label>
               <input
