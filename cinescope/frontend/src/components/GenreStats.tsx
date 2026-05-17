@@ -41,7 +41,7 @@ export function GenreStats({ movies }: Props) {
 
       <div className="charts-grid">
 
-        {/* Graphique 1 — Recettes par genre */}
+        {/* Graphique 1 */}
         <div className="chart-card">
           <h3>Recettes totales par genre (M$)</h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -56,7 +56,7 @@ export function GenreStats({ movies }: Props) {
           </ResponsiveContainer>
         </div>
 
-        {/* Graphique 2 — Note moyenne par genre */}
+        {/* Graphique 2 */}
         <div className="chart-card">
           <h3>Note presse moyenne par genre</h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -75,29 +75,19 @@ export function GenreStats({ movies }: Props) {
           </ResponsiveContainer>
         </div>
 
-        {/* Tableau récapitulatif */}
-        <div className="chart-card chart-card--full">
-          <h3>Récapitulatif</h3>
-          <table className="stats-table">
-            <thead>
-              <tr>
-                <th>Genre</th>
-                <th>Films</th>
-                <th>Recettes totales</th>
-                <th>Note moy.</th>
-              </tr>
-            </thead>
-            <tbody>
-              {stats.map(s => (
-                <tr key={s.genre}>
-                  <td><strong>{s.genre}</strong></td>
-                  <td>{s.films}</td>
-                  <td>{s.recettes.toLocaleString('fr-FR')} M$</td>
-                  <td>{s.note > 0 ? `${s.note}/10` : 'N/A'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* Graphique 3 */}
+        <div className="chart-card">
+        <h3>Nombre de films par genre</h3>
+        <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={stats} layout="vertical" margin={{ left: 20 }}>
+            <XAxis type="number" tick={{ fontSize: 12 }} allowDecimals={false} />
+            <YAxis type="category" dataKey="genre" tick={{ fontSize: 12 }} width={110} />
+            <Tooltip formatter={(v) => [`${v} film${Number(v) > 1 ? 's' : ''}`, 'Films']} />
+            <Bar dataKey="films" radius={[0, 6, 6, 0]}>
+                {stats.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
+            </Bar>
+            </BarChart>
+        </ResponsiveContainer>
         </div>
 
       </div>

@@ -10,28 +10,28 @@ export function useMovies() {
   const [selectedGenre, setSelectedGenre] = useState<string>('Tous')
   const [sortField, setSortField] = useState<SortField>('recettes_totales')
   const [sortOrder, setSortOrder] = useState<SortOrder>('desc')
-  // Chargement initial des films
+  
   useEffect(() => {
     moviesService.getAll()
       .then(setMovies)
       .catch(e => setError(e.message))
       .finally(() => setLoading(false))
   }, [])
-  // Liste des genres uniques extraite des films
+  
   const genres = useMemo(() => {
     const all = movies
       .map(m => m.genre)
-      .filter((g): g is string => g !== null) // TypeScript guard — filtre les null
+      .filter((g): g is string => g !== null) 
     return ['Tous', ...Array.from(new Set(all)).sort()]
   }, [movies])
-  // Films filtrés et triés — recalculé uniquement quand une dépendance change
+  
   const filteredMovies = useMemo(() => {
     let result = [...movies]
-    // Filtre par genre
+    
     if (selectedGenre !== 'Tous') {
       result = result.filter(m => m.genre === selectedGenre)
     }
-    // Tri
+    
     result.sort((a, b) => {
       if (sortField === 'recettes_totales') {
         return sortOrder === 'desc'
@@ -45,7 +45,7 @@ export function useMovies() {
     })
     return result
   }, [movies, selectedGenre, sortField, sortOrder])
-  // Stats calculées sur les films filtrés
+  
   const stats = useMemo(() => {
     const withScore = filteredMovies.filter(m => m.note_presse !== null)
     return {

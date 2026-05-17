@@ -9,7 +9,7 @@ export function StatsBar({ totalFilms, totalRecettes, avgScore }: Props) {
     notation: 'compact',
     compactDisplay: 'short',
     style: 'currency',
-    currency: 'EUR',
+    currency: 'USD',
     maximumFractionDigits: 1
   }).format(totalRecettes)
 
