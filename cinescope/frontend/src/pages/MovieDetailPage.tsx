@@ -3,6 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom'
 import type { Movie } from '../../../shared/types/movie'
 import { moviesService } from '../services/movies.service'
 import { Navbar } from '../components/NavBar'
+import { BsCalendar3, BsGlobe2, BsTicketPerforatedFill } from 'react-icons/bs'
+import { MdLocalMovies, MdAttachMoney } from "react-icons/md"
+import { IoMdClock } from "react-icons/io";
+import { FaNewspaper, FaStar } from "react-icons/fa";
 
 export function MovieDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -52,34 +56,38 @@ export function MovieDetailPage() {
                 <span className="detail-badge detail-badge--genre">{movie.genre}</span>
               )}
               {movie.note_presse !== null ? (
-                <span className="detail-badge detail-badge--score">{movie.note_presse}/10</span>
+                <span className="detail-badge detail-badge--score"><FaStar /> {movie.note_presse}/10</span>
               ) : (
                 <span className="detail-badge detail-badge--score-na">Non noté</span>
               )}
             </div>
           </div>
           <div className="detail-meta-row">
-            <span>{date}</span>
-            <span>{movie.duree_minutes} min</span>
-            <span>{movie.pays_origine}</span>
-            <span>{movie.distributeur}</span>
+            <span><BsCalendar3 /> {date}</span>
+            <span><IoMdClock /> {movie.duree_minutes !== null ? `${movie.duree_minutes} min` : 'N/A'}</span>
+            <span><BsGlobe2 /> {movie.pays_origine}</span>
+            <span><MdLocalMovies /> {movie.distributeur}</span>
           </div>
         </div>
 
         <div className="detail-grid">
           <div>
+            <MdAttachMoney />
             <strong>Recettes</strong>
             <span>{movie.recettes_totales !== null ? recettes : 'N/A'}</span>
           </div>
           <div>
+            <BsTicketPerforatedFill />
             <strong>Entrées</strong>
             <span>{movie.nombre_entrees !== null ? movie.nombre_entrees.toLocaleString('fr-FR') : 'N/A'}</span>
           </div>
           <div>
+            <FaNewspaper />
             <strong>Note presse</strong>
             <span>{movie.note_presse !== null ? `${movie.note_presse}/10` : 'Non noté'}</span>
           </div>
           <div>
+            <IoMdClock />
             <strong>Durée</strong>
             <span>{movie.duree_minutes !== null ? `${movie.duree_minutes} min` : 'N/A'}</span>
           </div>

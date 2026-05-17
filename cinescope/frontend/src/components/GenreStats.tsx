@@ -8,7 +8,7 @@ import type { Movie } from '../../../shared/types/movie'
 
 interface Props { movies: Movie[] }
 
-const COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ddd6fe', '#ede9fe', '#f5f3ff']
+const COLORS = [ '#4f46e5', '#6366f1', '#7c3aed', '#8b5cf6', '#a78bfa', '#b197fc', '#c4b5fd' ]
 
 export function GenreStats({ movies }: Props) {
   const stats = useMemo(() => {
