@@ -3,11 +3,11 @@ export interface Movie {
   titre: string
   date_sortie: string
   genre: string | null        
-  recettes_totales: number
-  nombre_entrees: number
+  recettes_totales: number | null
+  nombre_entrees: number | null
   pays_origine: string
   distributeur: string
-  duree_minutes: number
+  duree_minutes: number | null
   note_presse: number | null  
 }
 

@@ -2,7 +2,7 @@
 
 Application web d'exploration de films de box-office (2022–2024).
 
-**Stack :** React · TypeScript · Express · Node.js
+**Stack :** React · TypeScript · Express · Node.js  · Recharts · React Icons
 
 ---
 
@@ -42,25 +42,71 @@ L'application démarre sur http://localhost:5173
 
 ```plaintext
 cinescope/
-├── backend/          # Serveur Express + API REST
+├── backend/
 │   └── src/
-│       ├── routes/       # Définition des endpoints
-│       ├── controllers/  # Logique métier
-│       ├── services/     # Accès aux données
-│       └── middlewares/  # Validation, gestion d'erreurs
-├── frontend/         # Application React + TypeScript
+│       ├── routes/       # Endpoints REST (/movies)
+│       ├── controllers/  # Logique de chaque route
+│       ├── services/     # Lecture/écriture du fichier JSON
+│       └── middlewares/  # Validation des données entrantes
+├── frontend/
 │   └── src/
 │       ├── components/   # Briques UI réutilisables
 │       ├── pages/        # Vues complètes
-│       ├── hooks/        # Logique React réutilisable
-│       ├── services/     # Appels API
-│       └── types/        # Interfaces TypeScript
+│       ├── hooks/        # useMovies, usePagination
+│       └── services/     # Appels API (movies.service.ts)
 ├── shared/
-|    └── types/ 
-        └── movie.ts      # Type Movie partagé frontend/backend
+│   └── types/
+│       └── movie.ts      # Type Movie partagé frontend/backend
 └── data/
-    └── movies.json   # Source de données (200 films, 2022–2024)
+    └── movies.json       # Source de données (200 films, 2022–2024)
 ```
+---
+---
+## Fonctionnalités
+
+### Features obligatoires
+
+- **Liste des films**
+  - Titre
+  - Genre
+  - Recettes
+  - Date de sortie
+  - Note presse
+
+- **Filtre par genre**
+  - Menu déroulant dynamique basé sur les données disponibles
+
+- **Tri des films**
+  - Par recettes ou par date
+  - Ordre croissant / décroissant via boutons toggle
+
+- **Compteurs dynamiques**
+  - Nombre de films affichés
+  - Recettes cumulées
+  - Note moyenne
+  - Mise à jour automatique à chaque filtre / tri
+
+- **Page détail film**
+  - Toutes les informations complètes du film
+
+---
+
+### Features bonus
+
+- **Statistiques par genre**
+  - 3 graphiques côte à côte (Recharts)
+    - Recettes totales
+    - Note presse moyenne
+    - Nombre de films
+
+- **Moteur de recommandation**
+  - 3 films similaires affichés sur la page détail
+  - Basé sur un algorithme de similarité (voir section dédiée)
+
+- **CRUD complet**
+  - API Express
+  - Persistance des données dans un fichier JSON
+  - Création / lecture / mise à jour / suppression de films
 ---
 ## API REST : Endpoints
 
@@ -71,6 +117,48 @@ cinescope/
 | POST     | `/movies`    | Crée un nouveau film                |
 | PUT      | `/movies/:id`| Modifie un film existant            |
 | DELETE   | `/movies/:id`| Supprime un film                    |
+---
+---
+## Interface d'administration
+
+Une interface graphique de type **CRUD** est disponible à l'adresse suivante :
+
+http://localhost:5173/admin
+
+---
+
+### Fonctionnalités
+
+Cette interface permet de gérer les films directement depuis l’application :
+
+- **Créer un nouveau film**
+  - Via un formulaire dédié
+
+- **Modifier un film existant**
+  - Accessible via le bouton **"Modifier"** dans la liste
+
+- **Supprimer un film**
+  - Avec confirmation avant suppression
+
+---
+
+### 🔄 Fonctionnement
+
+Toutes les actions (création, modification, suppression) passent par l’API Express et sont persistées dans le fichier :
+
+```txt
+movies.json
+```
+
+---
+
+### Accès
+
+Cette interface **n’est pas protégée par authentification**.
+
+Elle est volontairement laissée ouverte afin de :
+- démontrer le fonctionnement du CRUD
+- servir de preuve technique dans le cadre du test
 ---
 
 ## Moteur de recommandation
@@ -134,4 +222,4 @@ La note presse agit comme un critère d’ajustement final.
 Elle permet de rapprocher des films ayant un niveau de qualité perçu similaire selon les critiques spécialisées.
 
 
-*README mis à jour au fur et à mesure de l'avancement du projet.*
+*Projet réalisé par Johanna Angloma dans le cadre d'un test technique pour une candidature en alternance.*
