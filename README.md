@@ -125,6 +125,8 @@ Une interface graphique de type **CRUD** est disponible à l'adresse suivante :
 
 http://localhost:5173/admin
 
+ou alors via le bouton Admin en bas de la page principale. 
+
 ---
 
 ### Fonctionnalités

@@ -3,9 +3,15 @@ import cors from 'cors'
 import moviesRouter from './routes/movies.routes'
 
 const app = express()
-const PORT = 3001
+const PORT = Number(process.env.PORT) || 3001
 
-app.use(cors())
+app.use(cors({
+  origin: [
+    'http://localhost:5173',           
+    /\.onrender\.com$/                 
+  ]
+}))
+
 app.use(express.json())
 
 app.use('/api/movies', moviesRouter)
@@ -16,5 +22,5 @@ app.get('/health', (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`🎬 Serveur démarré sur http://localhost:${PORT}`)
+  console.log(`Serveur démarré sur http://localhost:${PORT}`)
 })
