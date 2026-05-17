@@ -400,6 +400,11 @@ a:focus { outline: none; }
   color: var(--text);
 }
 
+.chart-card svg:focus,
+.chart-card svg *:focus {
+  outline: none;
+}
+
 
 /* ===========================
    DETAIL PAGE
