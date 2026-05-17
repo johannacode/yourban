@@ -25,9 +25,11 @@ export function MovieDetailPage() {
   if (loading) return <div className="loading"><div className="spinner" />Chargement...</div>
   if (!movie) return <div className="error">Film introuvable</div>
 
-  const recettes = new Intl.NumberFormat('fr-FR', {
-    style: 'currency', currency: 'USD', maximumFractionDigits: 0
-  }).format(movie.recettes_totales)
+  const recettes = movie.recettes_totales !== null
+    ? new Intl.NumberFormat('fr-FR', {
+        style: 'currency', currency: 'USD', maximumFractionDigits: 0
+      }).format(movie.recettes_totales)
+    : 'N/A'
 
   const date = new Date(movie.date_sortie).toLocaleDateString('fr-FR', {
     day: 'numeric', month: 'long', year: 'numeric'
@@ -67,11 +69,11 @@ export function MovieDetailPage() {
         <div className="detail-grid">
           <div>
             <strong>Recettes</strong>
-            <span>{recettes}</span>
+            <span>{movie.recettes_totales !== null ? recettes : 'N/A'}</span>
           </div>
           <div>
             <strong>Entrées</strong>
-            <span>{movie.nombre_entrees.toLocaleString('fr-FR')}</span>
+            <span>{movie.nombre_entrees !== null ? movie.nombre_entrees.toLocaleString('fr-FR') : 'N/A'}</span>
           </div>
           <div>
             <strong>Note presse</strong>
@@ -79,7 +81,7 @@ export function MovieDetailPage() {
           </div>
           <div>
             <strong>Durée</strong>
-            <span>{movie.duree_minutes} min</span>
+            <span>{movie.duree_minutes !== null ? `${movie.duree_minutes} min` : 'N/A'}</span>
           </div>
         </div>
 

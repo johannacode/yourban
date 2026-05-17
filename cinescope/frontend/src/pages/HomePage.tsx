@@ -46,9 +46,9 @@ export function HomePage() {
           selectedGenre={selectedGenre}
           onGenreChange={(g) => { setSelectedGenre(g); setPage(1) }}
           sortField={sortField}
-          onSortFieldChange={setSortField}
+          onSortFieldChange={(f) => { setSortField(f); setPage(1) }}
           sortOrder={sortOrder}
-          onSortOrderChange={setSortOrder}
+          onSortOrderChange={(o) => { setSortOrder(o); setPage(1) }}
         />
         <div className="movies-grid">
           {paginated.map(movie => (
