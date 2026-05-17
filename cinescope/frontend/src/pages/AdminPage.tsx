@@ -24,7 +24,8 @@ export function AdminPage() {
   const [editId, setEditId] = useState<number | null>(null)
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null)
   const [page, setPage] = useState(1)
-  
+  const [search, setSearch] = useState('')
+  const [deleteId, setDeleteId] = useState<number | null>(null)
 
   useEffect(() => { load() }, [])
 
@@ -67,7 +68,6 @@ export function AdminPage() {
       ? (form.genre_custom || null)
       : (form.genre || null)
 
-    // Validation note presse
     const note = form.note_presse ? Number(form.note_presse) : null
     if (note !== null && (note < 0 || note > 10)) {
       notify('La note presse doit être entre 0 et 10', false)
@@ -103,19 +103,29 @@ export function AdminPage() {
   }
 
   async function handleDelete(id: number) {
-    if (!confirm('Supprimer ce film ?')) return
+    setDeleteId(id)
+  }
+
+  async function confirmDelete() {
+    if (deleteId === null) return
+
     try {
-      await moviesService.delete(id)
-      notify('Film supprimé')
-      load()
+        await moviesService.delete(deleteId)
+        notify('Film supprimé')
+        load()
     } catch {
-      notify('Erreur lors de la suppression', false)
+        notify('Erreur lors de la suppression', false)
+    } finally {
+        setDeleteId(null)
     }
   }
 
-  // Pagination
-  const totalPages = Math.ceil(movies.length / PAGE_SIZE)
-  const paginated = movies.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+  const filteredMovies = movies.filter(movie =>
+    movie.titre.toLowerCase().includes(search.toLowerCase())
+  )
+
+  const totalPages = Math.ceil(filteredMovies.length / PAGE_SIZE)
+  const paginated = filteredMovies.slice( (page - 1) * PAGE_SIZE, page * PAGE_SIZE )
 
   return (
     <>
@@ -254,6 +264,9 @@ export function AdminPage() {
             </div>
 
           </div>
+          <div className="legend">
+            <p>Les champs avec un (*) sont obligatoires, mais pour plus de fiabilité, merci de remplir tous les champs.<br /></p>
+          </div>
 
           <div className="admin-form-actions">
             <button className="admin-btn admin-btn--primary" onClick={handleSubmit}>
@@ -269,7 +282,18 @@ export function AdminPage() {
 
         {/* Liste avec pagination */}
         <div className="admin-list">
-          <h2>{movies.length} films</h2>
+          <h2>{filteredMovies.length} films</h2>
+          <div className="admin-search">
+            <input
+                type="text"
+                placeholder="Rechercher un film..."
+                value={search}
+                onChange={(e) => {
+                setSearch(e.target.value)
+                setPage(1)
+                }}
+            />
+          </div>
           <div className="admin-table-wrapper">
             <table className="admin-table">
               <thead>
@@ -329,6 +353,36 @@ export function AdminPage() {
           )}
         </div>
       </div>
+      {deleteId !== null && (
+        <div
+            className="modal-overlay"
+            onClick={() => setDeleteId(null)}
+        >
+            <div
+            className="modal"
+            onClick={(e) => e.stopPropagation()}
+            >
+            <h3>Confirmation</h3>
+            <p>Voulez-vous vraiment supprimer ce film ?</p>
+
+            <div className="modal-actions">
+                <button
+                className="admin-btn admin-btn--ghost"
+                onClick={() => setDeleteId(null)}
+                >
+                Annuler
+                </button>
+
+                <button
+                className="admin-btn admin-btn--danger"
+                onClick={confirmDelete}
+                >
+                Supprimer
+                </button>
+            </div>
+            </div>
+        </div>
+      )}
     </>
   )
 }
