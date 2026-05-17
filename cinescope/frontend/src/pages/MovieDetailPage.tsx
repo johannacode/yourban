@@ -116,13 +116,15 @@ export function MovieDetailPage() {
 
 //Logique de l'algorithme expliqué dans le README.md 
 function getSimilarMovies(target: Movie, allMovies: Movie[]): Movie[] {
-  const maxRevenue = Math.max(...allMovies.map(m => m.recettes_totales))
+  const revenues = allMovies.map(m => m.recettes_totales ?? 0)
+  const maxRevenue = Math.max(...revenues) || 1
+
   return allMovies
     .filter(m => m.id !== target.id)
     .map(m => {
       let score = 0
       if (m.genre && target.genre && m.genre === target.genre) score += 50
-      const revenueDiff = Math.abs(m.recettes_totales - target.recettes_totales)
+      const revenueDiff = Math.abs((m.recettes_totales ?? 0) - (target.recettes_totales ?? 0))
       score += 30 * (1 - revenueDiff / maxRevenue)
       if (m.note_presse !== null && target.note_presse !== null) {
         score += 20 * (1 - Math.abs(m.note_presse - target.note_presse) / 10)

@@ -18,7 +18,7 @@ export function GenreStats({ movies }: Props) {
       const existing = map.get(genre) ?? { count: 0, revenue: 0, scores: [] }
       map.set(genre, {
         count: existing.count + 1,
-        revenue: existing.revenue + m.recettes_totales,
+        revenue: existing.revenue + (m.recettes_totales ?? 0),
         scores: m.note_presse !== null ? [...existing.scores, m.note_presse] : existing.scores
       })
     })

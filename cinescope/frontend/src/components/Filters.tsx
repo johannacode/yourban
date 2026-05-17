@@ -8,15 +8,28 @@ interface Props {
   onSortFieldChange: (field: SortField) => void
   sortOrder: SortOrder
   onSortOrderChange: (order: SortOrder) => void
+  search: string
+  onSearchChange: (value: string) => void
 }
 
 export function Filters({
   genres, selectedGenre, onGenreChange,
   sortField, onSortFieldChange,
-  sortOrder, onSortOrderChange
+  sortOrder, onSortOrderChange,
+  search, onSearchChange
 }: Props) {
   return (
     <div className="filters">
+
+      <div className="filter-group">
+        <label>Rechercher un film</label>
+        <input
+          type="text"
+          placeholder="Ex : Inception"
+          value={search}
+          onChange={(e) => onSearchChange(e.target.value)}
+        />
+      </div>
 
       <div className="filter-group">
         <label>Genre</label>

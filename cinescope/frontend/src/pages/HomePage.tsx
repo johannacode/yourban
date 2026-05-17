@@ -13,6 +13,7 @@ export function HomePage() {
     selectedGenre, setSelectedGenre,
     sortField, setSortField,
     sortOrder, setSortOrder,
+    search, setSearch,
     movies
   } = useMovies()
 
@@ -49,6 +50,8 @@ export function HomePage() {
           onSortFieldChange={(f) => { setSortField(f); setPage(1) }}
           sortOrder={sortOrder}
           onSortOrderChange={(o) => { setSortOrder(o); setPage(1) }}
+          search={search}
+          onSearchChange={(value) => { setSearch(value); setPage(1) }}
         />
         <div className="movies-grid">
           {paginated.map(movie => (
