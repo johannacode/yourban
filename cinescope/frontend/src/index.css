@@ -24,6 +24,11 @@ body {
   min-height: 100vh;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 a { outline: none; }
 a:focus { outline: none; }
 
@@ -31,9 +36,11 @@ a:focus { outline: none; }
    NAVBAR
 =========================== */
 .navbar {
+  margin-top: 10px;
   display: flex;
-  justify-content: center;
-  padding: 1.2rem 1.5rem;
+  flex-direction: column;  
+  align-items: center;     
+  padding: 0 1.5rem;      
   background: transparent;
 }
 
@@ -41,6 +48,7 @@ a:focus { outline: none; }
   width: 100%;
   max-width: 900px;
   height: 56px;
+  margin-top: 1.2rem;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -75,6 +83,51 @@ a:focus { outline: none; }
   align-items: center;
 }
 
+.navbar-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.navbar-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.navbar-mobile-menu {
+  width:100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin: 0.5rem 0 0;
+  padding: 0.8rem 0;
+  box-shadow: var(--shadow);
+}
+
+.navbar-mobile-menu a {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.navbar-mobile-menu a:hover { color: var(--primary); }
+
 /* ===========================
    HERO
 =========================== */
@@ -86,7 +139,7 @@ a:focus { outline: none; }
 }
 
 .hero-title {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 800;
   line-height: 1.15;
   color: var(--text);
@@ -696,35 +749,45 @@ a:focus { outline: none; }
    RESPONSIVE
 =========================== */
 @media (max-width: 768px) {
-  .hero { padding: 3rem 1.2rem 2rem; }
-  .hero-title { font-size: 1.8rem; }
-  .hero-subtitle { font-size: 0.9rem; }
+  html, body { overflow-x: hidden; }
+
+  .hero { padding: 2rem 1.2rem 1.5rem; }
+  .hero-title { font-size: 1.5rem; }
+  .hero-subtitle { font-size: 0.88rem; }
 
   .stats-bar { grid-template-columns: 1fr; gap: 0.8rem; }
 
-  .section { padding: 2.5rem 1.2rem; }
+  .section { padding: 2rem 1rem; }
 
-  .filters {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
+  .filters { flex-direction: column; align-items: stretch; gap: 1rem; }
   .filter-group select { min-width: unset; width: 100%; }
+  .toggle-group { width: 100%; }
+  .toggle-btn { flex: 1; text-align: center; justify-content: center; }
 
   .movies-grid { grid-template-columns: 1fr; }
-
   .charts-grid { grid-template-columns: 1fr; }
-
   .similar-grid { grid-template-columns: 1fr; }
 
   .detail-grid { grid-template-columns: repeat(2, 1fr); }
-  .about-card { gap: 1.5rem; padding: 2rem 1.5rem; }
-  .navbar { padding: 0.8rem 1rem; }
+  .detail-hero { padding: 1.2rem; }
+  .detail-hero h1 { font-size: 1.3rem; }
+  .detail-meta-row { flex-direction: column; gap: 0.5rem; }
+  .detail-page { padding: 1rem 1rem 3rem; }
 
-  .navbar-inner { padding: 0 1.2rem; }
+  .about-card { padding: 1.5rem; }
 
-  .pagination-btn { width: 34px; height: 34px; font-size: 0.82rem; }
+  /* Navbar mobile */
+  .navbar { padding: 0.5rem 0.8rem; }
+  .navbar-inner {
+    padding: 0 1rem;
+    max-width: 100%;
+    height: 48px;
+  }
+  .navbar-logo-image { height: 44px; }
+  .navbar-links { display: none; }
+  .navbar-hamburger { display: flex; }
+
+  .pagination-btn { width: 32px; height: 32px; font-size: 0.8rem; }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
