@@ -1,6 +1,7 @@
 import type { Movie, CreateMovieDto, UpdateMovieDto } from '../../../shared/types/movie' 
 
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001/api/movies'
+const API_URL = "https://cinescope-api-ucl4.onrender.com/api/movies"
+// const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001/api/movies'
 
 export const moviesService = {
   async getAll(): Promise<Movie[]> {
