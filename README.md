@@ -240,7 +240,7 @@ Elle permet de rapprocher des films ayant un niveau de qualité perçu similaire
 ![Ipad view](docs/homepageipadview.png)
 ![Phone view](docs/homepagephoneview.png)
 
-### Page principale : 
+### Page admin : 
 
 ![Add form](docs/adminpagetop.png)
 ![Statistiques](docs/adminpagemaincontent.png)
