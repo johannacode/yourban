@@ -27,6 +27,7 @@ cd backend
 npm install
 npm run dev
 ```
+Le serveur démarre sur **http://localhost:3001**
 
 ### 3. Lancer le frontend
 ```bash
@@ -34,7 +35,7 @@ cd frontend
 npm install
 npm run dev
 ```
-L'application démarre sur http://localhost:5173
+L'application démarre sur **http://localhost:5173**
 
 ---
 
@@ -225,5 +226,27 @@ La note presse agit comme un critère d’ajustement final.
 
 Elle permet de rapprocher des films ayant un niveau de qualité perçu similaire selon les critiques spécialisées.
 
+---
+
+## Aperçu
+
+### Page principale : 
+
+![homepagetop](docs/homepagetop.png)
+![Main content](docs/homepagemaincontent.png)
+![Statistiques](docs/homepagestats.png)
+![A propos](docs/homepagebottom.png)
+
+![Ipad view](docs/homepageipadview.png)
+![Phone view](docs/homepagephoneview.png)
+
+### Page principale : 
+
+![Add form](docs/adminpagetop.png)
+![Statistiques](docs/adminpagemaincontent.png)
+![A propos](docs/adminpagemodaldel.png)
+
+![Ipad view](docs/adminpageipadview.png)
+![Phone view](docs/adminpagephoneview.png)
 
 *Projet réalisé par Johanna Angloma dans le cadre d'un test technique pour une candidature en alternance.*

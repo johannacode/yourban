@@ -2398,17 +2398,5 @@
     "distributeur": "Gaumont",
     "duree_minutes": 98,
     "note_presse": 4.7
-  },
-  {
-    "id": 201,
-    "titre": "caca",
-    "genre": "Comédie",
-    "date_sortie": "2000-05-12",
-    "pays_origine": "caca",
-    "distributeur": "caca",
-    "recettes_totales": 120000,
-    "nombre_entrees": 123333,
-    "duree_minutes": 120,
-    "note_presse": null
   }
 ]
