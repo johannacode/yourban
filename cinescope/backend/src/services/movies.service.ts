@@ -3,7 +3,7 @@ import path from 'path'
 import type { Movie, CreateMovieDto, UpdateMovieDto } from '../../../shared/types/movie'  
 
 // Chemin vers le fichier JSON
-const DATA_PATH = path.resolve(__dirname, '../../../data/movies.json')
+const DATA_PATH = path.join(process.cwd(), 'data/movies.json')
 
 function readMovies(): Movie[] {
   const raw = fs.readFileSync(DATA_PATH, 'utf-8')
