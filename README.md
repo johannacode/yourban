@@ -244,6 +244,7 @@ Elle permet de rapprocher des films ayant un niveau de qualité perçu similaire
 
 ![Add form](docs/adminpagetop.png)
 ![Statistiques](docs/adminpagemaincontent.png)
+![Step del](docs/stepdel.png)
 ![A propos](docs/adminpagemodaldel.png)
 
 ![Ipad view](docs/adminpageipadview.png)
