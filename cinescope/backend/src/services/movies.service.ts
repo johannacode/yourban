@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import type { Movie, CreateMovieDto, UpdateMovieDto } from '../../../shared/types/movie'  //caca
+import type { Movie, CreateMovieDto, UpdateMovieDto } from '../../../shared/types/movie'  
 
 // Chemin vers le fichier JSON
 const DATA_PATH = path.join(__dirname, '../../../data/movies.json')
